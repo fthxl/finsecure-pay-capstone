@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: finsecure-config
+data:
+  APP_NAME: "FinSecure Pay"
+  ENVIRONMENT: "production"
+  LOG_LEVEL: "INFO"
+  MAX_TRANSACTION_AMOUNT: "10000"
