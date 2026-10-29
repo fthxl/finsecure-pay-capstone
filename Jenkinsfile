@@ -39,7 +39,19 @@ pipeline {
                 sh "docker build -t ${FULL_IMAGE} -t ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest ."
             }
         }
-
+        stage('Security Scan (Trivy)') {
+            steps {
+                echo "Scanning image for vulnerabilities..."
+                sh '''
+                    trivy image \
+                        --severity HIGH,CRITICAL \
+                        --exit-code 0 \
+                        --no-progress \
+                        --format table \
+                        ${FULL_IMAGE}
+                '''
+            }
+        }
         stage('Push to Docker Hub') {
             steps {
                 echo "Pushing image to Docker Hub..."
