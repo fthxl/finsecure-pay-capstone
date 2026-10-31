@@ -134,3 +134,6 @@ def test_validate_rejects_empty_merchant():
     response = client.post("/validate", json=transaction)
     assert response.json()["status"] == "rejected"
     assert "merchant" in response.json()["reason"].lower()
+
+def test_deliberate_fail():
+    assert 1 == 2, "Deliberate failure to demo the pipeline gate"
