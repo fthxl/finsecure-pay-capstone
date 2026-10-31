@@ -52,6 +52,7 @@ pipeline {
                 '''
             }
         }
+        // Secrets come from Jenkins Credentials store, never stored in this repo
         stage('Push to Docker Hub') {
             steps {
                 echo "Pushing image to Docker Hub..."
