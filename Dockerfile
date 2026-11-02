@@ -10,6 +10,9 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Remove build tools not needed at runtime (their bundled packages had HIGH findings)
+RUN pip uninstall -y setuptools wheel
+
 # Copy the rest of the application code
 COPY app.py .
 
